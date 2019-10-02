@@ -1,0 +1,16 @@
+#div1{
+    
+    border: 2px red solid;
+
+}
+#div2{
+   border-width: 3px;
+   border-style: dotted;
+   border-color: blue;
+   border-right-color: aqua;
+   border-left-color: blueviolet;
+   border-top-color: bisque;
+   border-bottom-color: coral;
+   
+
+}
