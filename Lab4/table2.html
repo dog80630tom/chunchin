@@ -1,37 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
-    td{
-        width: 150px;
-        text-align: center;
-        cursor: pointer;
+        td {
+            width: 150px;
+            text-align: center;
+            cursor: pointer;
 
-    }
+        }
     </style>
     <script>
-      
-        var flag=true;
-        function settext(obj){
-            if(obj.innerText!="_")return;
-            if(flag)
-            {
-                flag=false;
-                obj.innerText='O';
+
+        var flag = true;
+        function settext(obj) {
+            if (obj.innerText != "_") return;
+            if (flag) {
+                flag = false;
+                obj.innerText = 'O';
 
             }
-            else{
-                obj.innerText='X';
-               flag=true;
+            else {
+                obj.innerText = 'X';
+                flag = true;
             }
 
         }
     </script>
 </head>
+
 <body>
     <table border="1" style="width: 100%;height:200px;">
         <tr>
@@ -40,15 +41,16 @@
             <td id="c3" onclick="settext(document.getElementById('c3'))">_</td>
         </tr>
         <tr>
-                <td id="c4" onclick="settext(document.getElementById('c4'))">_</td>
-                <td id="c5" onclick="settext(document.getElementById('c5'))">_</td>
-                <td id="c6" onclick="settext(document.getElementById('c6'))">_</td>
+            <td id="c4" onclick="settext(document.getElementById('c4'))">_</td>
+            <td id="c5" onclick="settext(document.getElementById('c5'))">_</td>
+            <td id="c6" onclick="settext(document.getElementById('c6'))">_</td>
         </tr>
         <tr>
-                <td id="c7" onclick="settext(document.getElementById('c7'))">_</td>
-                <td id="c8" onclick="settext(document.getElementById('c8'))">_</td>
-                <td id="c9" onclick="settext(document.getElementById('c9'))">_</td>
+            <td id="c7" onclick="settext(document.getElementById('c7'))">_</td>
+            <td id="c8" onclick="settext(document.getElementById('c8'))">_</td>
+            <td id="c9" onclick="settext(document.getElementById('c9'))">_</td>
         </tr>
     </table>
 </body>
+
 </html>
