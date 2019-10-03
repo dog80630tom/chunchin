@@ -1,0 +1,60 @@
+.Flexbox{
+    #con1{
+
+        height: 300px;
+
+
+    }
+    .container{
+         float: left;
+        flex-direction:9;
+   
+    }
+    label{
+        
+       text-align: center;
+       margin: 0px 42px;
+   }
+    .circle{
+
+        border-radius: 99em;
+        margin: 0px 15px; 
+        padding: 2px;        
+    }
+    .la2{
+        text-align: center;
+        margin: 0px 47px;  
+
+    }
+    .circle2{
+
+        border-radius: 99em;
+        margin: 0px 20px; 
+        padding: 2px;        
+    }
+    .item{
+
+        flex-grow:1;
+        margin: 10px;
+    }
+    display: flex;
+    flex-grow:1;
+}
+.Flexbox2{
+   .img2{
+     margin: 30px 10px 0px 10px ;
+
+   }
+   .la3{
+     margin: 0px 80px;
+
+   }
+   .item{
+
+    flex-wrap:5;
+    margin: 10px;
+    position: relative;
+}
+    display: flex;
+    flex-grow:1;
+}
