@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+    fieldset{
+
+        border-radius: 5px;
+        margin: 10px;
+    }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action=" http://isbaas.azurewebsites.net/WebForms/Form2Mail.aspx?mailto=dog80630tom@gmail.com&redirect=http://www.google.com" method="POST">
+        <fieldset>
+            <legend>個人資料－必填</legend>
+            <div>
+                <label>姓名</label>
+                <input type="text" placeholder="請輸入姓名" id="feildname" name="feildname">
+
+
+            </div>
+            <div>
+                <label>密碼</label>
+                <input type="password" id="feildPWD" name="feildPWD">
+            </div>
+            <div> <input type="radio" name="gender" value="男">男生
+
+                <input type="radio" name="gender" value="女">女生
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>個人資料－興趣</legend>
+            <div>
+                <input type="checkbox" name="hobby" value="音樂">音樂
+
+                <input type="checkbox" name="hobby" value="運動">運動
+                <input type="checkbox" name="hobby" value="閱讀">閱讀
+                <input type="checkbox" name="hobby" value="唱歌">唱歌
+            </div>
+            <div>
+
+                <label>專長:</label>
+                <textarea cols="40" rows="5"></textarea>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>個人資料－地址</legend>
+
+            <div>
+                郵遞區號 <input type="text" name="Postal_code" maxlength="4">
+            </div>
+            <div>
+                <select name="city">
+                    <option value="台北">台北</option>
+                    <option value="台中">台中</option>
+                    <option value="高雄">高雄</option>
+                    <option value="花蓮">花蓮</option>
+                </select></div>
+            <div>
+
+
+                其他地址<input type="text" name="OtherAddress">
+            </div>
+        </fieldset>
+        <div>
+            <button type="submit">送出</button>
+            <button type="reset">重置
+            </button>
+        </div>
+    </form>
+</body>
+
+</html>
