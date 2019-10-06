@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <title>Document</title>
+    <script>
+        function Show(msg) {
+            document.getElementById('Label1').innerHTML += msg + "<br />";
+        }
+        function Button1_Click() {
+            var height = document.getElementById('txbHeight').value;
+            var weight = document.getElementById('txbWeight').value;
+            var bmi = GetBmi(height, weight);
+            Show("BMI :" + bmi);
+        }
+        function GetBmi(height, weight) {
+            var bmi = 0;
+            H = height / 100;
+            bmi = weight / (H * H);
+            return bmi;
+        }
+    </script>
+</head>
+<body>
+   
+
+   
+        <label class="row col-md-6">身高:</label>
+        <input id="txbHeight" class="form-control"  type="text" placeholder="輸入身高" />
+        <label class="row col-md-6">體重:</label>
+        <input id="txbWeight"  class="form-control"  type="text" placeholder="輸入體重" />
+        <label id="Label1" >結果:</label><br />
+        <input type="button"  class="btn btn-primary"
+        id="Button1" onclick="Button1_Click();" value="計算" />
+  
+    
+</body>
+</html>

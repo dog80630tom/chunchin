@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+        <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <style>
+    fieldset{
+
+        border-radius: 5px;
+        margin: 10px;
+        text-align: center;
+    }
+    div{
+
+        text-align: center;
+    }
+
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+       <script>
+        function getElement(name) {
+      return document.getElementById(name);
+    }
+
+    //判斷是否可以送件
+    function Button_Submit() {
+      //抓取頁面上的checkboc1，取得是否checked
+      var isChecked = getElement('MustCheck').checked;
+      //如果是，就return true
+      if (isChecked) return true;
+      //否則就... 
+      alert('必須勾選同意!');
+      return false;
+    }
+
+    //當網頁載入完成後執行
+    window.onload = function () {
+      //hook event(在form1被submit時...)
+      getElement('form1').onsubmit = function () {
+      //呼叫 Button_Submit()
+        return Button_Submit();
+      };
+    };
+       </script>
+</head>
+
+<body>
+    <form id="form1"  action=" http://isbaas.azurewebsites.net/WebForms/Form2Mail.aspx?mailto=dog80630tom@gmail.com&redirect=http://www.google.com" method="POST">
+        <div class="card bg-primary mb-3 text-white">個人資料－必填</div>
+            <div class="card-header">
+            <div>
+                <label class="row col-md-6">姓名</label>
+                <input class="form-control"  type="text" placeholder="請輸入姓名" id="feildname" name="feildname">
+
+
+            </div>
+            <div>
+                <label class="row col-md-6">密碼</label>
+                <input class="form-control"  type="password" id="feildPWD" name="feildPWD" maxlength="10">
+            </div> 
+            <div> <input  type="radio" name="gender" value="男">男生
+
+                <input type="radio" name="gender" value="女">女生
+            </div>
+        </div>
+        <div class="card bg-primary mb-3 text-white">個人資料－興趣</div>
+            <div class="card-header">
+            <div>
+                <input type="checkbox" name="hobby" value="音樂">音樂
+
+                <input type="checkbox" name="hobby" value="運動">運動
+                <input type="checkbox" name="hobby" value="閱讀">閱讀
+                <input type="checkbox" name="hobby" value="唱歌">唱歌
+            </div>
+            <div>
+
+                <label class="row col-md-6">專長:</label>
+                <textarea class="form-control"  name="Special_Skill" cols="40" rows="5"></textarea>
+            </div>
+        </div>
+        <div class="card bg-primary mb-3 text-white">個人資料－地址</div>
+            <div class="card-header">
+
+            <div>
+              <label  class="row col-md-6"> 郵遞區號</label>  <input class="form-control"  type="text" name="Postal_code" maxlength="4">
+            </div>
+            <div>
+                <label class="row col-md-6" >城市</label><select class="form-control"   name="city">
+                    <option value="台北">台北</option>
+                    <option value="台中">台中</option>
+                    <option value="高雄">高雄</option>
+                    <option value="花蓮">花蓮</option>
+                </select></div>
+            <div>
+
+
+               <label class="row col-md-6">其他地址</label> <input class="form-control"  type="text" name="OtherAddress">
+            </div>
+        </div>
+        <div><input id="MustCheck" name="MustCheck" type="checkbox" value=false>是否同意提供個資</div>
+        <div>
+            <button type="submit" class="btn btn-primary" onclick="Button_Submit()">送出</button>
+            <button type="reset" class="btn btn-primary">重置
+            </button>
+        </div>
+    </form>
+</body>
+
+</html>
