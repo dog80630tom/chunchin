@@ -52,7 +52,12 @@
 </head>
 
 <body>
+    
+      
     <form id="form1"  action=" http://isbaas.azurewebsites.net/WebForms/Form2Mail.aspx?mailto=dog80630tom@gmail.com&redirect=http://www.google.com" method="POST">
+        <div class="container">
+        <div class="row">
+    <div class="col-md-6">
         <div class="card bg-primary mb-3 text-white">個人資料－必填</div>
             <div class="card-header">
             <div>
@@ -85,6 +90,8 @@
                 <textarea class="form-control"  name="Special_Skill" cols="40" rows="5"></textarea>
             </div>
         </div>
+    </div>
+    <div class="col-md-6">
         <div class="card bg-primary mb-3 text-white">個人資料－地址</div>
             <div class="card-header">
 
@@ -104,13 +111,16 @@
                <label class="row col-md-6">其他地址</label> <input class="form-control"  type="text" name="OtherAddress">
             </div>
         </div>
-        <div><input id="MustCheck" name="MustCheck" type="checkbox" value=false>是否同意提供個資</div>
+        </div>
         <div>
-            <button type="submit" class="btn btn-primary" onclick="Button_Submit()">送出</button>
+              <div><input id="MustCheck" name="MustCheck" type="checkbox" value=false>是否同意提供個資</div>
+       <button type="submit" class="btn btn-primary" onclick="Button_Submit()">送出</button>
             <button type="reset" class="btn btn-primary">重置
             </button>
         </div>
+    </div>
     </form>
+</div>
 </body>
 
 </html>
