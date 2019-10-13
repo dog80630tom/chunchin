@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+            @font-face {
+                font-family: clockfont;
+                src: url("font\\CursedTimerUlil-Aznm.ttf");
+            }
+        </style>
+    <script>
+        Date.prototype.Format = function (fmt) { //author: meizz 
+            var o = {
+                "M+": this.getMonth() + 1, //月份 
+                "d+": this.getDate(), //日 
+                "H+": this.getHours(), //小时 
+                "m+": this.getMinutes(), //分 
+                "s+": this.getSeconds(), //秒 
+                "q+": Math.floor((this.getMonth() + 3) / 3), //季度 
+                "S": this.getMilliseconds() //毫秒 
+            };
+            if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1
+                .length));
+            for (var k in o)
+                if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[
+                    k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+            return fmt;
+        }
+        var flag = true;
+        var count = 0;
+        var dt = new Date('1970/01/01 00:00:00');
+
+        function addonesecnd() {
+            count += 1000;
+            var time = new Date(dt.getTime() + count);
+            
+            $("#clock01").html(time.Format('HH:mm:ss'));
+        }
+
+        function mssecond() {
+            count -= 1000;
+            var time = new Date(dt.getTime() + count);
+            
+            $("#clock01").html(time.Format('HH:mm:ss'));
+        }
+
+        function automssecond() {
+            count -= 1000;
+            var time = new Date(dt.getTime() + count);
+            
+            $("#clock01").html(time.Format('HH:mm:ss'));
+            if (flag) setTimeout(automssecond, 1000);
+            if (time.Format('HH:mm:ss') == '00:00:00') {
+
+                alert("時間到");
+                flag = false;
+
+            }
+        }
+
+        function stopclock() {
+
+            flag = false;
+
+        }
+        $(function () {
+            $("#button1").click(function (e) {
+                addonesecnd();
+
+            });
+            $("#button2").click(function (e) {
+                mssecond();
+
+            });
+            $("#button3").click(function (e) {
+                flag=true;
+                automssecond();
+            });
+            $("#button4").click(function (e) {
+                stopclock();
+
+            });
+        });
+    </script>
+</head>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <label id="clock01" style="font-family: clockfont">Text</label>
+        </div>
+
+
+
+    </div>
+    <input id="button1" type="button" class="btn btn-success" value="加一秒">
+    <input id="button2" type="button" class="btn btn-success" value="減一秒">
+    <input id="button3" type="button" class="btn btn-success" value="開始倒數">
+    <input id="button4" type="button" class="btn btn-success" value="倒數停止">
+</div>
+
+</body>
+
+</html>

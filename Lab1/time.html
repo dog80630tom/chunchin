@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+     <!-- bootstrap 4.3.1 -->
+     <link rel="stylesheet"
+     href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" />
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+ <style>
+        @font-face {
+            font-family: clockfont;
+            src: url("font\\CursedTimerUlil-Aznm.ttf");
+        }
+    </style>
+    <script>
+         Date.prototype.Format = function (fmt) { //author: meizz 
+            var o = {
+                "M+": this.getMonth() + 1, //月份 
+                "d+": this.getDate(), //日 
+                "H+": this.getHours(), //小时 
+                "m+": this.getMinutes(), //分 
+                "s+": this.getSeconds(), //秒 
+                "q+": Math.floor((this.getMonth() + 3) / 3), //季度 
+                "S": this.getMilliseconds() //毫秒 
+            };
+            if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+            for (var k in o)
+                if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+            return fmt;
+        }
+        var flag=true;
+        function stopclock(){
+
+             flag=false;
+
+        }
+    function showclock(){
+        
+     var dt =new  Date();
+     var datetime=dt.Format('yyyy/MM/dd HH:mm:ss');
+     $("#clock01").html(datetime.substr(0,10)+"<br>"+datetime.substr(10,10));
+     if(flag) setTimeout(showclock,1000);
+    }
+    function clickbutton(){
+    
+     $("#button1").click(function (e) { 
+        flag=true;
+        showclock();
+    });
+    $("#button2").click(function (e) { 
+        stopclock();
+        
+    });
+    }
+    $(function () {
+        clickbutton();
+    });
+    </script>
+</head>
+<body>
+    <div class="container">
+<div class="row">
+    <div class="col-md-4">
+<label id="clock01" style="font-family: clockfont">Text</label>
+</div>
+
+
+
+</div>
+<input id="button1" type="button" class="btn btn-success" value="開始">
+<input id="button2" type="button" class="btn btn-success" value="暫停">
+    </div>
+</body>
+</html>

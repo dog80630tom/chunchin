@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <style>
+    .col-md-4{
+
+        margin: 30px;
+    }
+    </style>
+    <script>
+        var sum ="";
+    function addtext(text) {
+      sum = sum+text;
+    }
+   function alltext(text) {
+       $("#co").val(text);
+   }
+   function cleartext() {
+    $("#co").val("");
+    sum="";
+   }
+ function calculator() {
+    $("#co").val(eval(sum));
+    sum=eval(sum);
+ }
+    $(function () {
+        $("input:button").click(function (e) { 
+           var tiem=$(this).val();
+          if(tiem=="AC") {cleartext();
+          }
+          else if(tiem=="=")
+          { calculator();
+          }
+          else
+          {
+           addtext(tiem);
+           alltext(sum);
+          }
+        });
+    
+    });
+    </script>
+</head>
+
+<body>
+        <div class="container">
+            <div class="row" style="margin-top: 50px ">
+                <div class="col-md-3"></div>
+                <div  class="col-md-6">
+                    <p>
+                        <input id="co" class="form-control" style="width: 180px" />
+                    </p>
+                    <p>
+                        <input type="button" class="btn btn-light rounded-circle"
+                            style="width:40px;height:40px;" value="AC"></button>
+                        <input type="button" class="btn btn-light rounded-circle"
+                            style="width:40px;height:40px;" value="("></button>
+                        <input type="button" class="btn btn-light rounded-circle"
+                            style="width:40px;height:40px;" value=")"></button>
+                        <input type="button" class="btn btn-light rounded-circle"
+                            style="width:40px;height:40px;" value="/"></button>
+                    </p>
+                    <p>
+                        <input type="button" class="btn btn-light rounded-circle"
+                            style="width:40px;height:40px;" value="7"></button>
+                        <input type="button" class="btn btn-light rounded-circle"
+                            style="width:40px;height:40px;" value="8"></button>
+                        <input type="button" class="btn btn-light rounded-circle"
+                            style="width:40px;height:40px;" value="9"></button>
+                        <input type="button" class="btn btn-light rounded-circle"
+                            style="width:40px;height:40px;" value="*"></button>
+                    </p>
+                    <p>
+                        <input type="button" class="btn btn-light rounded-circle"
+                            style="width:40px;height:40px;" value="4"></button>
+                        <input type="button" class="btn btn-light rounded-circle"
+                            style="width:40px;height:40px;" value="5"></button>
+                        <input type="button" class="btn btn-light rounded-circle"
+                            style="width:40px;height:40px;" value="6"></button>
+                        <input type="button" class="btn btn-light rounded-circle"
+                            style="width:40px;height:40px;" value="-"></button>
+                    </p>
+                    <p>
+                        <input type="button" class="btn btn-light rounded-circle"
+                            style="width:40px;height:40px;" value="1"></button>
+                        <input type="button" class="btn btn-light rounded-circle"
+                            style="width:40px;height:40px;" value="2"></button>
+                        <input type="button" class="btn btn-light rounded-circle"
+                            style="width:40px;height:40px;" value="3"></button>
+                        <input type="button" class="btn btn-light rounded-circle"
+                            style="width:40px;height:40px;" value="+"></button>
+                    </p>
+                    <p>
+                        <input type="button" class="btn btn-light rounded-circle"
+                            style="width:40px;height:40px;" value="0"></button>
+                        <input type="button" class="btn btn-light rounded-circle"
+                            style="width:40px;height:40px;" value="."></button>
+                        <input type="button" class="btn btn-light rounded" style="width:90px;height:40px;" value="=">
+                    </p>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+        </div>
+    </body>
+
+</html>
