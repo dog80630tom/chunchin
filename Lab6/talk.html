@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+        function click() {
+            $('#ButtonSend').click(function (e) {
+                var html = $('#TalkContainer').html();
+                var value = $('#inputText').val();
+                $('#inputText').val('');
+                $('#TalkContainer').html(html + '<br/><br>用戶:' + value);
+                $('#TalkContainer').scrollTop($('#TalkContainer')[0].scrollHeight);
+                getAnswer(value, function isSuccess(ret) {
+                    console.log(ret);
+                    if(ret.answers[0].answer=='No good match found in KB.')
+                    {
+                        $('#TalkContainer').html($('#TalkContainer').html() + '<br/><br>客服:' + "沒有此資料不要亂打");
+                    $('#TalkContainer').scrollTop($('#TalkContainer')[0].scrollHeight);
+
+                    }else{
+                    $('#TalkContainer').html($('#TalkContainer').html() + '<br/><br>客服:' + ret.answers[0].answer);
+                    $('#TalkContainer').scrollTop($('#TalkContainer')[0].scrollHeight);
+                    }
+                });
+            });
+        }
+
+        function getAnswer(msg, isSuccess) {
+            $.ajax({
+                type: "post",
+                headers: {
+                    "Authorization": "EndpointKey 389a42d8-3525-44dc-b8a2-e56444c711aa",
+                    "Content-Type": "application/json"
+                },
+                url: "https://today20191016.azurewebsites.net/qnamaker/knowledgebases/b5856956-5373-4bbb-ab08-aa2a340a153b/generateAnswer",
+                data: JSON.stringify({
+                    "question": msg
+                }),
+                dataType: "json",
+                success: isSuccess,
+                error: function (err) {
+                    //如果有錯
+                }
+            });
+        }
+        $(function () {
+            click();
+        });
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <div class="card ">
+                <div class="card-header col-md-12 bg-success">
+                    對話框
+                </div>
+                <div class="card-body col-12">
+                    <div id="TalkContainer" style="overflow: auto; height: 300px;">
+                    </div>
+                </div>
+                <form class="form-inline">
+                    <input id="inputText" class="form-control" style="width:88%">
+                    <button type="button" id="ButtonSend" class="btn btn-primary">送出</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>

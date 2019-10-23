@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <style>
+        #Translatortextarea01,#Translatortextarea02 {
+            width: 200px;
+            height: 200px;
+        }
+
+        #button01 {
+            text-align: center;
+            margin-top: 100px;
+            margin-left: 100px;
+        }
+
+        #button02 {
+            text-align: center;
+            margin-bottom: 100px;
+            margin-left: 100px;
+        }
+    </style>
+    <script>
+        function TRANSLATOR(Text,target,to) {
+            $.ajax({
+                type: "post", //http verb
+                headers: {
+                    //http header
+                    "Ocp-Apim-Subscription-Key": "8ceefc2a9f8a4d4d945c7d1759710391",
+                    "Content-Type": "application/json"
+                },
+                url: "https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&to=" + Text,
+                data: JSON.stringify([{
+                    "Text": to
+                }]), //要翻譯的文字
+                dataType: "json",
+                success: function (response) {
+                    //呼叫遠端服務後的回傳結果
+                    $('#Translatortextarea'+target).val(response[0].translations[0].text);
+                }
+            });
+        }
+
+        function click() {
+            $("#button01").click(function (e) {
+               var TRANSLATORtype=$("#select02").val();
+               var text=$("#Translatortextarea01").val();
+               TRANSLATOR(TRANSLATORtype,'02',text);
+            });
+            $("#button02").click(function (e) {
+
+                var TRANSLATORtype2=$("#select01").val();
+                var text2=$("#Translatortextarea02").val();
+               TRANSLATOR(TRANSLATORtype2,'01',text2);
+            });
+        }
+
+        $(function () {
+            click();
+        });
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row" style="margin-top: 50px ">
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-header bg-primary">要翻譯語言<select id="select01">
+                            <option value="en">英文</option>
+                            <option value="zh-Hant">中文</option>
+                            <option value="ja">日文</option>
+                            <option value="ko">韓文</option>
+                            <option value="th">泰文</option>
+                        </select></div>
+                    <div class="card-body">
+                        <textarea id="Translatortextarea01"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+
+                <p>
+                    <input id="button01" type="button" value="->">
+                </p>
+
+                <p>
+                    <input id="button02" type="button" value="<-">
+                </p>
+            </div>
+
+
+            <div class="col-md-3">
+                    <div class="card">
+                <div class="card-header bg-primary">
+
+                要翻譯語言<select id="select02">
+                        <option value="en">英文</option>
+                        <option value="zh-Hant">中文</option>
+                        <option value="ja">日文</option>
+                        <option value="ko">韓文</option>
+                        <option value="th">泰文</option>
+                    </select></div>
+                <div class="card-body">
+                    <textarea id="Translatortextarea02"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+
+</html>
