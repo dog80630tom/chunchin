@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+     <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+  <script>
+        var answer;
+        var position;
+        var randseed=[1,2,3,4];
+        var result=[0,0,0,0];
+        var count=0;
+      var i=1;
+      var k=2;
+      var total=false;
+      var picture={
+           height:350,
+           width:350,
+         top1:0,
+         left1:0,
+         top2:0,
+         top2:0,
+         lenth:0,
+        
+         tranx1:0,
+         trany1:0,
+         trany2:0,
+         tranx2:0,
+        splice:function(item) {
+        for(var i=0;i<this.lenth;i++)
+        {
+        $(item).prepend('<div class='+'col-4'+' id='+i+'>')
+        $("#"+i).css({width:this.width,height:this.height,backgroundImage:"url(picture/1_XEgA1TTwXa5AvAdw40GFow.png)"});
+        $("#"+i).css('background-position',imgepostion[i][0]+"px "+imgepostion[i][1]+"px");
+        $('#'+i).css('position','absolute');
+        $("#"+i).css('left',position[i][0]);
+      $("#"+i).css('top',position[i][1]);
+        }
+     
+       },
+       change:function(){
+        $("#"+i).css('left',this.tranx1);
+      $("#"+i).css('top',this.trany1);
+    
+       },
+       init:function() {
+       this.data=[0,this.width-30];
+       
+       console.log(this.data[0]);
+         answer=[];
+         answer[0]=[this.data[0],this.data[0]];
+         answer[1]=[this.data[0],this.data[1]];
+         answer[2]=[this.data[1],this.data[0]];
+         answer[3]=[this.data[0],this.data[1]];
+         position=[];
+         position[0]=[answer[0][0],answer[0][0]];
+         position[1]=[answer[1][1],answer[1][0]];
+         position[2]=[answer[2][1],answer[2][0]];
+         position[3]=[answer[3][1],answer[3][1]];
+         imgepostion=[];
+         imgepostion=[[0,0],[350,0],[0,350],[350,350]];
+       }
+      
+        
+     
+    
+      
+     
+      };
+
+var pte1=picture;
+           var pte2=picture;
+    
+        function spileimg() {
+         
+           pte1.lenth=4;
+           pte1.init();
+           pte1.tranx1=position[0][0];
+           pte1.trany1=position[0][0];
+           pte1.tranx2=position[1][0];
+           pte1.trany2=position[1][1];
+           pte1.top1=0;
+           pte1.left1=0;
+           pte1.top2=0;
+           pte1.left2=330;
+           pte1.splice('#additem');
+         
+        }
+      
+    function round() {
+      for (var i = 0; i < 3; i++) {
+
+        var rdm = 0; //暫存的亂數
+
+        do {
+          var exist = false; //此亂數是否已存在
+          rdm = Math.floor(Math.random()*4); //取得亂數
+
+          //檢查亂數是否存在於陣列中，若存在則繼續回圈
+          if (result.indexOf(rdm) != -1) exist = true;
+
+        } while (exist); //產生沒出現過的亂數時離開迴圈
+
+        result[i]=rdm;
+      }
+    }
+      function initgame(e) {
+ 
+      
+       round();
+       $('#1').attr('style','background-Image:none; left:'+pte1.tranx1+'px; top:'+pte1.trany1+'px');
+       console.log(result);
+          i=result[0];
+            pte1.tranx1=position[0][0];
+           pte1.trany1=position[0][0];
+       
+           pte1.change();
+           i=result[1];
+           pte1.tranx1=position[1][0];
+           pte1.trany1=position[1][1];
+       pte1.change();
+           i=result[2];
+       
+           pte1.tranx1=position[2][0];
+           pte1.trany1=position[2][1];
+           pte1.change();
+           i=result[3];
+           pte1.tranx1=position[3][0];
+           pte1.trany1=position[3][1];
+        
+           pte1.change();
+       i=1;
+      
+          
+      }
+      function checkwin() {
+       
+    if(count>0)
+    {
+              if($("#1").css("top")==position[1][1]+"px"&&$("#1").css("left")==position[1][0]+"px"&&$("#3").css("top")==position[3][1]+"px"&&$("#3").css("left")==position[3][1]+"px"&&$("#0").css("top")==position[0][0]+"px"&&$("#0").css("left")==position[0][0]+"px"&&$("#2").css("top")==position[2][1]+"px"&&$("#2").css("left")==position[2][0]+"px")
+                 {
+
+                    total=true;
+
+                 }
+    
+           
+                 else{
+                  total=false;
+                }
+    }
+    count++;
+        console.log(total);
+        if(total)
+         {
+
+             alert("你成功了");
+
+         }
+      }
+        $(function () {
+            spileimg();
+           
+            $("#btn1").click(initgame);
+          
+            $(".col-4").on("click", function(e) {
+              checkwin();
+            var clickitemid=e.target.id;
+            var checknumber=clickitemid
+             
+             var top=  $("#"+clickitemid).css("top");
+                  var left= $("#"+clickitemid).css("left");
+                  var top2;
+                  var left2;
+                  i=1;
+                  top2= $("#1").css("top");
+                  left2=$("#1").css("left");
+                  if(top2=="0px"&&left2=="320px"&&top=="320px"&&left=="0px"||top2=="320px"&&left2=="0px"&&left=="320px"&&top=="0px"||top2=="0px"&&left2=="0px"&&left=="320px"&&top=="320px")
+                  {
+                         return 0;
+
+                  }
+            
+                  pte1.tranx1=left;
+                  pte1.trany1=top;
+                  pte1.change();
+                  i=clickitemid;
+                  pte1.tranx1=left2;
+                  pte1.trany1=top2;
+                  pte1.change();   
+                  checkwin();
+                  return 0;  
+            });
+        });
+    </script>
+</head>
+<body>
+    <input type="button" id="btn1" class="btn btn-success" value="開始">
+    <div class="container">
+        
+        <div class="row">
+               
+        <div class="col-md-12"  id="additem">
+         
+        </div>
+     
+   
+</div></body>
+</html>
