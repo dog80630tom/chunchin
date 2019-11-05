@@ -13,7 +13,7 @@
   <script>
         var answer;
         var position;
-        var randseed=[1,2,3,4];
+     
         var result=[0,0,0,0];
         var count=0;
       var i=1;
@@ -30,8 +30,7 @@
         
          tranx1:0,
          trany1:0,
-         trany2:0,
-         tranx2:0,
+        
         splice:function(item) {
         for(var i=0;i<this.lenth;i++)
         {
@@ -81,14 +80,7 @@ var pte1=picture;
          
            pte1.lenth=4;
            pte1.init();
-           pte1.tranx1=position[0][0];
-           pte1.trany1=position[0][0];
-           pte1.tranx2=position[1][0];
-           pte1.trany2=position[1][1];
-           pte1.top1=0;
-           pte1.left1=0;
-           pte1.top2=0;
-           pte1.left2=330;
+        
            pte1.splice('#additem');
          
         }
