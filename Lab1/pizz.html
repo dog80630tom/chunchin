@@ -18,6 +18,7 @@
         var count=0;
       var i=1;
       var k=2;
+      var g=0;
       var total=false;
       var picture={
            height:350,
@@ -86,6 +87,7 @@ var pte1=picture;
         }
       
     function round() {
+      result=[0,0,0,0];
       for (var i = 0; i < 3; i++) {
 
         var rdm = 0; //暫存的亂數
@@ -93,42 +95,86 @@ var pte1=picture;
         do {
           var exist = false; //此亂數是否已存在
           rdm = Math.floor(Math.random()*4); //取得亂數
-
+        
           //檢查亂數是否存在於陣列中，若存在則繼續回圈
           if (result.indexOf(rdm) != -1) exist = true;
-
+          
         } while (exist); //產生沒出現過的亂數時離開迴圈
+       
 
+
+        
         result[i]=rdm;
+        
       }
+   
     }
       function initgame(e) {
  
-      
-       round();
+        round();
+     
+       while(true)
+       {
+      if(result[1]==2||result[2]==2||result[2]==1)
+        {
+          round();
+        }
+        else{
+
+          break;
+        }
+       }
        $('#1').attr('style','background-Image:none; left:'+pte1.tranx1+'px; top:'+pte1.trany1+'px');
        console.log(result);
-          i=result[0];
+       g=0;
+       i=result[g];
             pte1.tranx1=position[0][0];
            pte1.trany1=position[0][0];
-       
+      
            pte1.change();
-           i=result[1];
-           pte1.tranx1=position[1][0];
+           g++;
+     while(g!=3)
+     {
+          
+        
+      
+         
+          i=result[g];
+          pte1.tranx1=position[1][0];
            pte1.trany1=position[1][1];
+           
        pte1.change();
-           i=result[2];
+       g++;
+        
+          
+    
+        
+        i=result[g];
        
-           pte1.tranx1=position[2][0];
-           pte1.trany1=position[2][1];
-           pte1.change();
-           i=result[3];
-           pte1.tranx1=position[3][0];
+       pte1.tranx1=position[2][0];
+       pte1.trany1=position[2][1];
+       pte1.change();
+        g++;
+       
+      
+        i=result[g];
+        pte1.tranx1=position[3][0];
            pte1.trany1=position[3][1];
         
            pte1.change();
+
+     }
+
+        
+         
+         
+           
+         
+         
+           
+          
        i=1;
-      
+       
           
       }
       function checkwin() {
@@ -164,7 +210,7 @@ var pte1=picture;
             $(".col-4").on("click", function(e) {
               checkwin();
             var clickitemid=e.target.id;
-            var checknumber=clickitemid
+            var checknumber=clickitemid;
              
              var top=  $("#"+clickitemid).css("top");
                   var left= $("#"+clickitemid).css("left");
